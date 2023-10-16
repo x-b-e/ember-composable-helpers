@@ -39,7 +39,7 @@ function _asArray(maybeArray) {
   }
   // for perf-reasons falling back to e-array, instead of using it first
   if (Array.isArray(maybeArray)) {
-    return maybeArray;
+    return maybeArray.slice();
   } else if (isArray(maybeArray)) {
     return maybeArray.slice();
   } else if (typeof maybeArray === 'object' && maybeArray === null) {
