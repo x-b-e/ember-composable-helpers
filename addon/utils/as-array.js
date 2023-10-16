@@ -41,7 +41,7 @@ function _asArray(maybeArray) {
   if (Array.isArray(maybeArray)) {
     return maybeArray;
   } else if (isArray(maybeArray)) {
-    return maybeArray;
+    return maybeArray.slice();
   } else if (typeof maybeArray === 'object' && maybeArray === null) {
     return [];
   } else if (typeof maybeArray === 'undefined') {
