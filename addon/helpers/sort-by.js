@@ -113,6 +113,8 @@ class SortBy {
       array = array.slice();
     }
 
+    console.log("sort by array", array)
+
     this.array = [...array];
   }
 
