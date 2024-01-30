@@ -69,7 +69,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
       store.createRecord('pet', { name: 'Jake' })
     ]);
 
-    this.set('pets', person.pets.toArray());
+    this.set('pets', person.pets.slice());
     this.set('currentPet', person.get('pets.firstObject'));
 
     await render(hbs`
