@@ -1,10 +1,10 @@
 import { helper } from '@ember/component/helper';
 import { A, isArray as isEmberArray } from '@ember/array';
-import asArray from '../utils/as-array';
+import { isSliceable } from '../utils/as-array';
 
 export function objectAt(index, array) {
-  if (array) {
-    array = asArray(array);
+  if (isSliceable(array)) {
+    array = array.slice();
   }
   if (!isEmberArray(array)) {
     return undefined;

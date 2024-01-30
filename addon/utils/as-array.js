@@ -10,8 +10,8 @@ function isArrayable(thing) {
   return typeof thing.toArray === 'function';
 }
 
-function isSliceable(thing) {
-  return typeof thing.slice === 'function';
+export function isSliceable(thing) {
+  return typeof thing?.slice === 'function';
 }
 
 function isPromiseLike(thing) {
