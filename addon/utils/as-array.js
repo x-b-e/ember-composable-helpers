@@ -1,11 +1,11 @@
 import { isArray } from '@ember/array';
 import EmberObject, { get } from '@ember/object';
+import { PromiseManyArray } from '@ember-data/model/-private';
 
 function isIterable(value) {
   return Symbol.iterator in Object(value);
 }
 
-// from https://github.com/flexyford/ember-power-select/blob/78a5430c1ac89daf315d0801fd5201e444e82434/addon/components/power-select.ts
 function isArrayable(thing) {
   return isSliceable(thing);
 }
@@ -15,7 +15,7 @@ export function isSliceable(thing) {
 }
 
 function isPromiseLike(thing) {
-  return typeof thing.then === 'function';
+  return typeof thing?.then === 'function';
 }
 
 function isPromiseProxyLike(thing) {
@@ -46,6 +46,8 @@ function _asArray(maybeArray) {
     return maybeArray;
   } else if (isSliceable(maybeArray)) {
     return maybeArray.slice();
+  } else if (maybeArray instanceof PromiseManyArray) {
+    return get(maybeArray, 'content')?.slice() ?? [];
   } else if (isArray(maybeArray)) {
     return maybeArray;
   } else if (typeof maybeArray === 'object' && maybeArray === null) {
