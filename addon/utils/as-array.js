@@ -10,6 +10,10 @@ function isArrayable(thing) {
   return typeof thing.toArray === 'function';
 }
 
+function isSliceable(thing) {
+  return typeof thing.slice === 'function';
+}
+
 function isPromiseLike(thing) {
   return typeof thing.then === 'function';
 }
@@ -40,6 +44,8 @@ function _asArray(maybeArray) {
   // for perf-reasons falling back to e-array, instead of using it first
   if (Array.isArray(maybeArray)) {
     return maybeArray;
+  } else if (isSliceable(maybeArray)) {
+    return maybeArray.slice();
   } else if (isArray(maybeArray)) {
     return maybeArray;
   } else if (typeof maybeArray === 'object' && maybeArray === null) {
