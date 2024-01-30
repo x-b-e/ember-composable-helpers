@@ -1,11 +1,14 @@
 import { helper } from '@ember/component/helper';
 import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import asArray from '../utils/as-array';
 
 function contains(needle, haystack) {
   return emberArray(haystack).includes(needle);
 }
 
 export function without(needle, haystack) {
+  needle = asArray(needle);
+  haystack = asArray(haystack);
   if (!isEmberArray(haystack)) {
     return false;
   }
