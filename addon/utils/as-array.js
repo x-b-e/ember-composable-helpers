@@ -44,8 +44,6 @@ function _asArray(maybeArray) {
   // for perf-reasons falling back to e-array, instead of using it first
   if (Array.isArray(maybeArray)) {
     return maybeArray;
-  } else if (isSliceable(maybeArray)) {
-    return maybeArray.slice();
   } else if (maybeArray instanceof PromiseManyArray) {
     return get(maybeArray, 'content')?.slice() ?? [];
   } else if (isArray(maybeArray)) {
