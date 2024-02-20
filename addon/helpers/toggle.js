@@ -2,6 +2,7 @@ import { helper } from '@ember/component/helper';
 import { get } from '@ember/object';
 import { set } from '@ember/object';
 import { isPresent } from '@ember/utils';
+import asArray from '../utils/as-array';
 
 function nextIndex(length, currentIdx) {
   if (currentIdx === -1 || currentIdx + 1 === length) {
@@ -16,6 +17,7 @@ export function toggle([prop, obj, ...values]) {
     let currentValue = get(obj, prop);
 
     if (isPresent(values)) {
+      values = asArray(values);
       let currentIdx = values.indexOf(currentValue);
       let nextIdx = nextIndex(values.length, currentIdx);
 

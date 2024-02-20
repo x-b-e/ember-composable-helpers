@@ -8,6 +8,7 @@ export function chunk(num, array) {
   let size = max(integer, 0);
 
   let length = 0;
+  array = asArray(array);
   if (isEmberArray(array)) {
     length = array.length;
   }
